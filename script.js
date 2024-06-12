@@ -1,5 +1,47 @@
+function calculateDistance(lat1, lon1, lat2, lon2) {
+    const toRadians = degree => degree * (Math.PI / 180);
+
+    const R = 6371; // Radius of the Earth in kilometers
+    const dLat = toRadians(lat2 - lat1);
+    const dLon = toRadians(lon2 - lon1);
+    const lat1Rad = toRadians(lat1);
+    const lat2Rad = toRadians(lat2);
+
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1Rad) * Math.cos(lat2Rad); 
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
+
+    const distance = R * c; // Distance in kilometers
+
+    const correctDistance = distance.toFixed(1);
+    
+    return correctDistance;
+}
+
+
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const API_KEY = "9d7bf4a5ef834fe9a9037d8696385d60"; // Replace with your OpenCage API key
+
+    const awais_latitide = 31.4902872;
+    const awais_longitude = 74.3044764;
+
+    const showDistance = (latitude, longitude ) => {
+
+        let distance = calculateDistance(awais_latitide, awais_longitude, latitude, longitude);
+        
+        document.getElementById('distance').innerText = `You are ${distance} km away from Awais Rao`;
+
+    }
+
+
+
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -37,6 +79,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data.results.length > 0 && data.results[0].components._normalized_city) {
                     // document.getElementById("city").innerText = "City: " + data.results[0].components._normalized_city + ', ' +  data.results[0].components.county == undefined ? data.results[0].components.suburb : data.results[0].components.county + ', ' + data.results[0].components.historical_division + ', ' + data.results[0].components.state + ', ' + data.results[0].components.country;
                     document.getElementById("city").innerText = "City: " + data.results[0].formatted;
+
+                    showDistance( latitude , longitude);
+
                 } else {
                     document.getElementById("city").innerText = "City not found";
                 }
