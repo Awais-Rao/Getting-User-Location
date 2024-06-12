@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(data => {
 
-                console.log(data);
+                // console.log(data);
 
                 if (data.results.length > 0 && data.results[0].components.municipality) {
                     document.getElementById("city").innerText = "City: " + data.results[0].components.municipality + ', ' + data.results[0].formatted;
