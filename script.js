@@ -22,20 +22,25 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
   return correctDistance;
 }
 
-const showMap = (latitude, longitude) => {
-  document.getElementById("map").innerHTML = `<iframe width="600"
-  height="450"
-  style="border:0"
-  loading="lazy"
-  allowfullscreen
-  src = "https://maps.google.com/maps?q=${latitude},${longitude}&hl=es;z=14&amp;output=embed"></iframe>`;
-};
-
 document.addEventListener("DOMContentLoaded", function () {
   const API_KEY = "9d7bf4a5ef834fe9a9037d8696385d60"; // Replace with your OpenCage API key
 
   const awais_latitide = 31.4902872;
   const awais_longitude = 74.3044764;
+
+
+  const showMap = (awais_latitide, awais_longitude) => {
+
+    let destination_latitude = awais_latitide;
+    let destination_longitude = awais_longitude;
+
+    document.getElementById("map").innerHTML = `<iframe width="600"
+    height="450"
+    style="border:0"
+    loading="lazy"
+    allowfullscreen
+    src = "https://maps.google.com/maps?q=${awais_latitide},${awais_longitude}&hl=es;z=14&amp;output=embed"></iframe>`;
+  };
 
   const showDistance = (latitude, longitude) => {
     let distance = calculateDistance(
@@ -127,3 +132,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+
+
+
+
+
