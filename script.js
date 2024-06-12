@@ -11,6 +11,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
 
+        // const latitude = 30.996899;
+        // const longitude = 74.2376667;
+
+        // const latitude = 31.5759538;
+        // const longitude = 74.3032571;
+
+        // const latitude = 31.465913091975903;
+        // const longitude = 74.25604779400174;
+
         document.getElementById("latitude").innerText = "Latitude: " + latitude;
         document.getElementById("longitude").innerText = "Longitude: " + longitude;
 
@@ -23,10 +32,11 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .then(data => {
 
-                // console.log(data);
+                console.log(data);
 
-                if (data.results.length > 0 && data.results[0].components.municipality) {
-                    document.getElementById("city").innerText = "City: " + data.results[0].components.municipality + ', ' + data.results[0].formatted;
+                if (data.results.length > 0 && data.results[0].components._normalized_city) {
+                    // document.getElementById("city").innerText = "City: " + data.results[0].components._normalized_city + ', ' +  data.results[0].components.county == undefined ? data.results[0].components.suburb : data.results[0].components.county + ', ' + data.results[0].components.historical_division + ', ' + data.results[0].components.state + ', ' + data.results[0].components.country;
+                    document.getElementById("city").innerText = "City: " + data.results[0].formatted;
                 } else {
                     document.getElementById("city").innerText = "City not found";
                 }
