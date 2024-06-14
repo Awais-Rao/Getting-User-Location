@@ -25,8 +25,8 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
 document.addEventListener("DOMContentLoaded", function () {
   const API_KEY = "9d7bf4a5ef834fe9a9037d8696385d60"; // Replace with your OpenCage API key
 
-  const awais_latitide = 31.4902872;
-  const awais_longitude = 74.3044764;
+  const awais_latitide = 31.4834944;
+  const awais_longitude = 74.3112704;
 
 
   const showMap = (awais_latitide, awais_longitude) => {
@@ -49,6 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
       latitude,
       longitude
     );
+
+    console.log(awais_latitide)
+    console.log(awais_longitude)
 
     document.getElementById(
       "distance"
@@ -88,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
 
         if (
           data.results.length > 0 &&
